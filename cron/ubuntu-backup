@@ -1,0 +1,5 @@
+#!/bin/bash
+echo '--------- LOGGING : UBUNTU BACKUP ---------' `date`;
+rm /media/zhuylanz/DATA/_os-recovery/Ubuntu/backup/server-full.tar
+sudo tar cpvf /media/zhuylanz/DATA/_os-recovery/Ubuntu/backup/server-full.tar /* --exclude=/media/zhuylanz/* --exclude=/hdisk/* --exclude=/proc/*;
+gdrive upload -p 14KvNkh0Cu-fzhiPhPywg_p0yWU24YlD1 /media/zhuylanz/DATA/_os-recovery/Ubuntu/backup/server-full.tar;
