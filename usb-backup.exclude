@@ -1,0 +1,8 @@
+/etc/fstab
+/boot
+/udisk
+/media
+/proc
+/tmp
+/sys
+/dev
