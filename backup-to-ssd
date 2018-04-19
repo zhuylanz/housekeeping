@@ -1,0 +1,3 @@
+#!/bin/bash
+echo '--------- LOGGING : UBUNTU-USB BACKUP ---------' `date`;
+sudo rsync -tav --delete --exclude-from=/home/zhuylanz/script/usb-backup.exclude / /media/zhuylanz/f1d67fbc-39b4-4565-a632-4495d83372f7;
