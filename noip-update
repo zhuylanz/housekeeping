@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo '--------- LOGGING : NO-IP UPDATE ---------' `date`;
+
+#nuhula-service.ddns.net
+curl 'http://dynupdate.no-ip.com/nic/update?hostname=nuhula-service.ddns.net' -H 'Authorization: Basic emh1eWxhbnpAZ21haWwuY29tOmhsc2NoYW5neWV1YWk=' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.9' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Connection: keep-alive' --compressed;
+
+#nuhula-sms.ddns.net
+#curl 'http://dynupdate.no-ip.com/nic/update?hostname=nuhula-sms.ddns.net' -H 'Authorization: Basic emh1eWxhbnpAZ21haWwuY29tOmhsc2NoYW5neWV1YWk=' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.9' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Connection: keep-alive' --compressed;
+
