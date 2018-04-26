@@ -1,0 +1,72 @@
+#!/bin/bash
+
+PID=$(pgrep gnome-session);
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-);
+
+function getWall0() {
+  path='/home/zhuylanz/script/cron/wall-script/wallpapers/';
+  old_wall_path=`gsettings get org.gnome.desktop.background picture-uri`;
+  old_wall_path=${old_wall_path//"'"/};
+  wall=`ls $path`;
+  wall_length=`ls $path | wc -l`;
+  wall_selected='file:///home/zhuylanz/script/cron/wall-script/wallpapers/';
+  random=`date +%s`;
+  random=$(($random%$wall_length+1));
+  count=0
+
+  for i in $wall
+  do
+    count=$(($count+1));
+    if [ $count -eq $random ]
+    then
+      wall_selected="$wall_selected$i";
+      break;
+    fi
+  done
+
+  if [ $wall_selected = $old_wall_path ]
+  then
+    getWall;
+  else
+    gsettings set org.gnome.desktop.background picture-uri $wall_selected;
+  fi
+}
+
+#Better Version:
+function randomWall() {
+  path='/home/zhuylanz/script/cron/wall-script/wallpapers/';
+  old_wall_path=`gsettings get org.gnome.desktop.background picture-uri`;
+  old_wall_path=${old_wall_path//"'"/};
+  new_wall_path=`ls $path | shuf -n1`;
+  new_wall_path="file://$path$new_wall_path";
+  
+  if [ $new_wall_path = $old_wall_path ]
+  then
+    randomWall;
+  else
+    gsettings set org.gnome.desktop.background picture-uri $new_wall_path;
+  fi
+}
+
+#Even Better:
+function slideShow() {
+  path='/home/zhuylanz/script/cron/wall-script/wallpapers/';
+  old_num=`gsettings get org.gnome.desktop.background picture-uri`;
+  old_num=${old_num//[a-z|\/|\:|"'"|\.|\-]/};
+  total_file=`ls $path | wc -l`;
+  total_num=$(($total_file-1));
+
+  if [ $old_num -eq $total_num ]
+  then
+    new_num=0;
+  else
+    new_num=$(($old_num+1));
+  fi
+
+  gsettings set org.gnome.desktop.background picture-uri file://$path"wall"$new_num".jpg";
+}
+
+
+
+echo '-----WALL-UPDATE-----' `date`;
+slideShow;
