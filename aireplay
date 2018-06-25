@@ -1,1 +1,0 @@
-sudo aireplay-ng mon0 -a 54:BE:53:BB:B7:7E -0 0 -c 1C:B7:2C:43:2A:E
