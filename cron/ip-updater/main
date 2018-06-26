@@ -1,5 +1,6 @@
 #!/bin/bash
 echo -e '\n>ip-updater---' `date`;
+script_path=/home/zhuylanz/script/cron/ip-updater
 
 _urlencode() {
 	python -c 'import urllib, sys; print urllib.quote(sys.argv[1], sys.argv[2])' \
@@ -21,12 +22,12 @@ update-dnspro() {
 	curl 'https://dnspro.vn/ZoneEditor.aspx' -H 'Cookie: ASP.NET_SessionId='$cookie_value1'; .domaincp='$cookie_value2 -H 'Origin: https://dnspro.vn' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Accept: */*' -H 'Cache-Control: no-cache' -H 'X-Requested-With: XMLHttpRequest' -H 'Connection: keep-alive' -H 'X-MicrosoftAjax: Delta=true' -H 'Referer: https://dnspro.vn/ZoneEditor.aspx' --data 'ctl00%24rscm=ctl00%24ContentPlaceHolder1%24up_A%7Cctl00%24ContentPlaceHolder1%24gv_A%24ctl02%24btnDelete&__EVENTTARGET=ctl00%24ContentPlaceHolder1%24gv_A%24ctl02%24btnDelete&__EVENTARGUMENT=&__VIEWSTATE='$viewstate'&__VIEWSTATEGENERATOR=868F393C&__VIEWSTATEENCRYPTED=&__ASYNCPOST=true&' --compressed
 }
 
-old_ip=`cat ./old-ip`
+old_ip=`cat $script_path/old-ip`
 new_ip=`curl icanhazip.com`
 echo 'old ip: ' $old_ip
 echo 'new ip: ' $new_ip
 
 if [ $old_ip != $new_ip ]; then
 	update-dnspro 'tanhopthanh.vn' 'Jhsh%$3gs#' $new_ip
-	echo $new_ip > ./old-ip
+	echo $new_ip > $script_path/old-ip
 fi
