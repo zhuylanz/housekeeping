@@ -1,0 +1,10 @@
+#sublime 3:
+- indent hotkey: (Preferences > Keybindings - User)
+{"keys": ["alt+shift+f"], "command": "reindent", "args": {"single_line": false}}
+- disable [enter] autocomplete: (Preferences > Settings)
+"auto_complete_commit_on_tab": true
+- packages:
+  codeintel,
+  vn ime,
+  babel,
+  ternjs
