@@ -1,0 +1,4 @@
+#!/bin/bash
+yum update && \
+yum install -y epel-release && \
+yum install -y net-tools bash-completion bash-completion-extra vim git 
